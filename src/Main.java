@@ -29,6 +29,7 @@ public class Main
             switch (choice)
             {
                 case "1":
+                    //Her opretter man et spil
                     System.out.println("Indtast spil ID");
                     int gameId = scanner.nextInt();
                     System.out.println("Indtast titel");
@@ -39,9 +40,13 @@ public class Main
                     double gamePrice = scanner.nextDouble();
                     Game newGame = new Game(gameId, gameTitle, gameGenre, gamePrice);
                     gameSystem.addGame(newGame);
+                    System.out.println("____________________");
+                    newGame.displayDetails();
+                    System.out.println("____________________");
                     scanner.nextLine();
                     break;
                 case "2":
+                    //Her opretter man en spiller
                     System.out.println("indtast spiller ID");
                     int playerId = scanner.nextInt();
                     System.out.println("Indtast navn");
@@ -52,26 +57,37 @@ public class Main
                     double playerScore = scanner.nextDouble();
                     Player newPlayer = new Player(playerId, playerName, playerAge, playerScore);
                     gameSystem.addPlayer(newPlayer);
+                    System.out.println("____________________");
+                    newPlayer.displayDetails();
+                    System.out.println("____________________");
                     scanner.nextLine();
                     break;
                 case "3":
+                    System.out.println("____________________");
                     gameSystem.displayAllGames();
+                    System.out.println("____________________");
                     break;
                 case "4":
+                    System.out.println("____________________");
                     gameSystem.displayAllPlayers();
+                    System.out.println("____________________");
                     break;
                 case "5":
                     System.out.println("Indtast spil ID");
                     int gameId2 = scanner.nextInt();
                     Game foundGame = gameSystem.findGameById(gameId2);
                     System.out.println("Du var valgt spillet" + foundGame.getTitle());
+                    System.out.println("____________________");
                     foundGame.displayDetails();
+                    System.out.println("____________________");
                     scanner.nextLine();
                     break;
                 case "6":
                     if (GameSystem.playerCount == 0)
                     {
+                        System.out.println("____________________");
                         System.out.println("Der findes ingen spillere");
+                        System.out.println("____________________");
                     } else {
                         System.out.println("Skriv spiller ID");
                         int playerId2 = scanner.nextInt();
@@ -79,9 +95,13 @@ public class Main
                         scanner.nextLine();
                         if (player != null)
                         {
+                            System.out.println("____________________");
                             System.out.println("Du har valgt spilleren " + player.getPlayerName() + ".");
+                            System.out.println("____________________");
+                            System.out.println("____________________");
                             System.out.println("1. Vil du se spillerens detaljer?");
                             System.out.println("2. Gå tilbage til hovedmenuen");
+                            System.out.println("____________________");
                             boolean repeat2 = true;
                             while(repeat2)
                             {
@@ -89,14 +109,20 @@ public class Main
                                 switch (choice2)
                                 {
                                     case "1":
+                                        System.out.println("____________________");
                                         player.displayDetails();
+                                        System.out.println("____________________");
                                         break;
                                     case "2":
-                                        System.out.println("Gå tilbage til hovedmenuen");
+                                        System.out.println("____________________");
+                                        System.out.println("Går tilbage til hovedmenuen");
+                                        System.out.println("____________________");
                                         repeat2 = false;
                                         break;
                                     default:
+                                        System.out.println("____________________");
                                         System.out.println("Ugyldigt valg prøv igen");
+                                        System.out.println("____________________");
                                 }
 
                             }
@@ -108,21 +134,31 @@ public class Main
                     int playerId3 = scanner.nextInt();
                     System.out.println("Indtast score");
                     double newScore = scanner.nextDouble();
+                    System.out.println("____________________");
                     gameSystem.updatePlayerScore(playerId3, newScore);
+                    System.out.println("____________________");
                     scanner.nextLine();
                     break;
                 case "8":
+                    System.out.println("____________________");
                     System.out.println("Total indtjening: " + GameSystem.calculateTotalRevenue());
+                    System.out.println("____________________");
                     break;
                 case "9":
+                    System.out.println("____________________");
                     GameSystem.findTopScoringPlayer();
+                    System.out.println("____________________");
                     break;
                 case "10":
+                    System.out.println("____________________");
                     System.out.println("Programmet afsluttes");
+                    System.out.println("____________________");
                     chosen = true;
                     break;
                 default:
+                    System.out.println("____________________");
                     System.out.println("Forkert input prøv igen");
+                    System.out.println("____________________");
 
 
             }
