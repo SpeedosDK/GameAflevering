@@ -5,12 +5,10 @@ public class GameSystem
     public static Game[] games;
     public static Player[] players;
     private static int gameCount;
-    private static int playerCount;
+    public static int playerCount;
     public static double totalRevenue;
     public static double topScore =Double.MIN_VALUE;
     public static final Scanner scanner = new Scanner(System.in);
-
-
 
     public GameSystem(int maxGames, int maxPlayers)
     {
@@ -58,15 +56,17 @@ public class GameSystem
             }
         }
     }
-    public  static Game findGameById(int gameId)
+    public static Game findGameById(int gameId)
     {
         for (int i = 0; i < gameCount; i++)
         {
-            games[i] = games[gameId];
+           if (games[i].getGameId() == gameId) {
+               return games[i];
+           }
         }
-        return games[0];
+        return null;
     }
-    public Player findPlayerById(int playerId)
+    public static Player findPlayerById(int playerId)
     {
 
 
@@ -98,114 +98,10 @@ public class GameSystem
             {
                 topScore = players[i].getScore();
                 topScoringPlayer = players[i];
+                System.out.println("Spiller med højeste score: " + topScoringPlayer.getPlayerName());
             }
         }
         return topScoringPlayer;
-
-    }
-    public static void printTopScoringPlayerName()
-    {
-        Player topScoringPlayer = findTopScoringPlayer();
-        if (topScoringPlayer != null)
-        {
-            System.out.println("TopScorer er: " + topScoringPlayer.getPlayerName());
-
-        }
-        else
-        {
-            System.out.println("Ingen spillere fundet");
-        }
-    }
-
-    public static void menu(GameSystem gameSystem)
-    {
-        boolean chosen = false;
-
-        do {
-            System.out.println("Vælg valgmuligheder");
-            System.out.println("1. Tilføj et spil");
-            System.out.println("2. Tilføj en spiller");
-            System.out.println("3. Vis alle spil");
-            System.out.println("4. Vis alle spillere");
-            System.out.println("5. Find et spil ved at søge på gameID");
-            System.out.println("6. Fid en spiller ved at søge på playerID");
-            System.out.println("7. Opdater en spiller score");
-            System.out.println("8. Udregn den samlede indtjening på spillene");
-            System.out.println("9. Find spilleren med den højeste score");
-            System.out.println("10. Afslut programmet");
-
-            String choice = scanner.nextLine();
-            switch (choice)
-            {
-                case "1":
-                    System.out.println("Indtast spil ID");
-                    int gameId = scanner.nextInt();
-                    System.out.println("Indtast titel");
-                    String gameTitle = scanner.next();
-                    System.out.println("Indtast genren");
-                    String gameGenre = scanner.next();
-                    System.out.println("Indtast pris");
-                    double gamePrice = scanner.nextDouble();
-                    Game newGame = new Game(gameId, gameTitle, gameGenre, gamePrice);
-                    gameSystem.addGame(newGame);
-                    break;
-                case "2":
-                    System.out.println("indtast spiller ID");
-                    int playerId = scanner.nextInt();
-                    System.out.println("Indtast navn");
-                    String playerName = scanner.next();
-                    System.out.println("Indtast alder");
-                    int playerAge = scanner.nextInt();
-                    System.out.println("Indtast score");
-                    double playerScore = scanner.nextDouble();
-                    Player newPlayer = new Player(playerId, playerName, playerAge, playerScore);
-                    gameSystem.addPlayer(newPlayer);
-                case "3":
-                    gameSystem.displayAllGames();
-                    break;
-                case "4":
-                    gameSystem.displayAllPlayers();
-                    break;
-                case "5":
-                    System.out.println("Indtast spil ID");
-                    int gameId2 = scanner.nextInt();
-                    Game foundGame = gameSystem.findGameById(gameId2);
-                    System.out.println("Du var valgt spillet" + foundGame.getTitle());
-                    foundGame.displayDetails();
-                    break;
-                case "6":
-                    if (gameSystem.playerCount == 0)
-                    {
-                        System.out.println("Der findes ingen spillere");
-                    } else {
-                        System.out.println("Skriv spiller ID");
-                        int playerId2 = scanner.nextInt();
-                        Player player = gameSystem.findPlayerById(playerId2);
-                        System.out.println("Du har valgt spilleren " + player.getPlayerName() + ".");
-                        break;
-                    }
-                case "7":
-                    System.out.println("Indtast spiller ID");
-                    int playerId3 = scanner.nextInt();
-                    System.out.println("Indtast score");
-                    double newScore = scanner.nextDouble();
-                    gameSystem.updatePlayerScore(playerId3, newScore);
-                    break;
-                case "8":
-                    gameSystem.calculateTotalRevenue();
-                    break;
-                case "9":
-                    gameSystem.printTopScoringPlayerName();
-                    break;
-                case "10":
-                    System.out.println("Programmet afsluttes");
-                    chosen = true;
-                default:
-                    System.out.println("Forkert input prøv igen");
-
-
-            }
-        }while (!chosen);
     }
 
 }
