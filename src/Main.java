@@ -98,6 +98,7 @@ public class Main
                             System.out.println("____________________");
                             System.out.println("Du har valgt spilleren " + player.getPlayerName() + ".");
                             System.out.println("____________________");
+                            System.out.println("");
                             System.out.println("____________________");
                             System.out.println("1. Vil du se spillerens detaljer?");
                             System.out.println("2. Gå tilbage til hovedmenuen");
