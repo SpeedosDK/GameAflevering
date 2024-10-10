@@ -4,7 +4,7 @@ public class GameSystem
 {
     public static Game[] games;
     public static Player[] players;
-    private static int gameCount;
+    public static int gameCount;
     public static int playerCount;
     public static double totalRevenue;
     public static double topScore =Double.MIN_VALUE;

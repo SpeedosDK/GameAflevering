@@ -73,14 +73,22 @@ public class Main
                     System.out.println("____________________");
                     break;
                 case "5":
-                    System.out.println("Indtast spil ID");
-                    int gameId2 = scanner.nextInt();
-                    Game foundGame = gameSystem.findGameById(gameId2);
-                    System.out.println("Du var valgt spillet" + foundGame.getTitle());
-                    System.out.println("____________________");
-                    foundGame.displayDetails();
-                    System.out.println("____________________");
-                    scanner.nextLine();
+                    if (GameSystem.gameCount == 0)
+                    {
+                        System.out.println("_____________________");
+                        System.out.println("Der findes ingen spil");
+                        System.out.println("_____________________");
+                    }
+                    else {
+                        System.out.println("Indtast spil ID");
+                        int gameId2 = scanner.nextInt();
+                        Game foundGame = gameSystem.findGameById(gameId2);
+                        System.out.println("Du var valgt spillet" + foundGame.getTitle());
+                        System.out.println("____________________");
+                        foundGame.displayDetails();
+                        System.out.println("____________________");
+                        scanner.nextLine();
+                    }
                     break;
                 case "6":
                     if (GameSystem.playerCount == 0)
@@ -131,14 +139,22 @@ public class Main
                     }
                     break;
                 case "7":
-                    System.out.println("Indtast spiller ID");
-                    int playerId3 = scanner.nextInt();
-                    System.out.println("Indtast score");
-                    double newScore = scanner.nextDouble();
-                    System.out.println("____________________");
-                    gameSystem.updatePlayerScore(playerId3, newScore);
-                    System.out.println("____________________");
-                    scanner.nextLine();
+                    if (GameSystem.playerCount == 0)
+                    {
+                        System.out.println("_________________________________");
+                        System.out.println("Ingen spillere til at ændre score");
+                        System.out.println("_________________________________");
+                    }
+                    else {
+                        System.out.println("Indtast spiller ID");
+                        int playerId3 = scanner.nextInt();
+                        System.out.println("Indtast score");
+                        double newScore = scanner.nextDouble();
+                        System.out.println("____________________");
+                        gameSystem.updatePlayerScore(playerId3, newScore);
+                        System.out.println("____________________");
+                        scanner.nextLine();
+                    }
                     break;
                 case "8":
                     System.out.println("____________________");
