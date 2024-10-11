@@ -29,26 +29,54 @@ public class Main
             switch (choice)
             {
                 case "1":
-                    //Her opretter man et spil
-                    System.out.println("Indtast spil ID");
-                    int gameId = scanner.nextInt();
-                    System.out.println("Indtast titel");
-                    String gameTitle = scanner.next();
-                    System.out.println("Indtast genren");
-                    String gameGenre = scanner.next();
-                    System.out.println("Indtast pris");
-                    double gamePrice = scanner.nextDouble();
-                    Game newGame = new Game(gameId, gameTitle, gameGenre, gamePrice);
-                    gameSystem.addGame(newGame);
-                    System.out.println("____________________");
-                    newGame.displayDetails();
-                    System.out.println("____________________");
-                    scanner.nextLine();
-                    break;
+                        //Her opretter man et spil
+                        boolean gameExists;
+                        int gameId;
+                        //Tjekker om game id allerede findes og hvis det gør looper den tilbage og spørger igen om game id
+                        do{
+                            gameExists = false;
+                        System.out.println("Indtast spil ID");
+                            gameId = scanner.nextInt();
+                        for (int i = 0; i < GameSystem.gameCount; i++) {
+                            if (GameSystem.games[i].getGameId() == gameId) {
+                                System.out.println("Det spil id findes allerede");
+                                gameExists = true;
+                                break;
+                            }
+                        }
+                        }while(gameExists);
+
+                        System.out.println("Indtast titel");
+                        String gameTitle = scanner.next();
+                        System.out.println("Indtast genren");
+                        String gameGenre = scanner.next();
+                        System.out.println("Indtast pris");
+                        double gamePrice = scanner.nextDouble();
+                        Game newGame = new Game(gameId, gameTitle, gameGenre, gamePrice);
+                        gameSystem.addGame(newGame);
+                        System.out.println("____________________");
+                        newGame.displayDetails();
+                        System.out.println("____________________");
+                        scanner.nextLine();
+                        break;
+
                 case "2":
                     //Her opretter man en spiller
-                    System.out.println("indtast spiller ID");
-                    int playerId = scanner.nextInt();
+                    boolean playerExists;
+                    int playerId;
+                    //Tjekker om spiller id allerede findes, hvis det gør, så looper den tilbage igen og spørger om spiller id
+                    do {
+                        System.out.println("Indtast spiller ID");
+                        playerId = scanner.nextInt();
+                        playerExists = false;
+                        for (int i = 0; i < GameSystem.playerCount; i++) {
+                            if (GameSystem.players[i].getPlayerID() == playerId) {
+                                System.out.println("Det spiller id findes allerede");
+                                playerExists = true;
+                            }
+                        }
+                    }while(playerExists);
+
                     System.out.println("Indtast navn");
                     String playerName = scanner.next();
                     System.out.println("Indtast alder");
