@@ -19,15 +19,16 @@ public class GameSystem
 
     public void addGame(Game game)
     {
-
-            games[gameCount] = game;
-            gameCount++;
+        //Tilføjer spil til array
+        games[gameCount] = game;
+        gameCount++;
 
     }
     public void addPlayer(Player player)
     {
-            players[playerCount] = player;
-            playerCount++;
+        //Tilføjer spiller til array
+        players[playerCount] = player;
+        playerCount++;
 
     }
     public void displayAllGames()
